@@ -17,7 +17,7 @@
 - **灵活合并：** 可选择每 1、2、3、4、5、10 或 20 份 PDF 合并输出为一个 XTC / XTCH 文件。
 - **单独输出：** 每组只有 1 份 PDF 时，每份 PDF 单独输出，并在对应队列项旁显示下载按钮。
 - **队列管理：** 合并模式下，输出结果统一显示在队列顶部；源 PDF 列表不会重复显示输出或合并状态标签。
-- **文件命名：** 尽量保留连续编号。例如，`a01.pdf` + `a02.pdf` 可能输出为 `01-02.xtc`。
+- **文件命名：** 尽量保留连续编号。例如，`a01.pdf` + `a02.pdf` 可能输出为 `a01-02.xtc`。
 - **多种输出格式：** 支持黑白 XTC 和四级灰度 XTCH。
 - **多种图像处理选项：** 提供多种抖动算法及对比度设置。
 - **双语界面：** 支持中文和英文。
@@ -119,7 +119,7 @@ Unlike workflows that require processing an entire PDF before showing a preview,
 - **Flexible merging:** Combine every 1, 2, 3, 4, 5, 10, or 20 PDFs into one XTC / XTCH output file.
 - **Individual output:** When the group size is set to 1, each PDF is converted into a separate file, with a download button beside its queue item.
 - **Organized queue:** In merge mode, output results appear together at the top of the queue, without redundant output or merge-status labels on source PDF items.
-- **Filename handling:** Output filenames try to preserve consecutive numbering. For example, `a01.pdf` + `a02.pdf` may produce `01-02.xtc`.
+- **Filename handling:** Output filenames try to preserve consecutive numbering. For example, `a01.pdf` + `a02.pdf` may produce `a01-02.xtc`.
 - **Multiple output formats:** Supports black-and-white XTC and four-level grayscale XTCH.
 - **Image processing:** Includes multiple dithering algorithms and contrast settings.
 - **Bilingual interface:** Supports Chinese and English.
