@@ -1,5 +1,5 @@
 
-# X3 漫画 PDF 批量转 XTC / XTCH
+# X3 漫画 PDF 批量转 XTC / XTCH (只转条漫）
 
 **中文 | [English](#english)**
 
@@ -59,7 +59,7 @@ https://zukuxi.github.io/x3-manhwa-pdf-to-xtc/
 
 <a id="english"></a>
 
-# X3 Batch Manhwa / Webtoon PDF to XTC / XTCH
+# X3 Batch Manhwa / Webtoon PDF to XTC / XTCH （Long-strip comic Only)
 
 Batch convert manhwa and webtoon PDFs into XTC / XTCH files for the Xteink X3 e-reader.
 
