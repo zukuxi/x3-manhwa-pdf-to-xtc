@@ -134,7 +134,27 @@ function processAccumulatedPage(acc,depth,algo,threshold,pages,previewMode=false
 async function renderPdfRows(pdf,page,top,rows,maskMode){const canvas=document.createElement('canvas');canvas.width=W;canvas.height=H;const ctx=canvas.getContext('2d',{willReadFrequently:true});ctx.fillStyle='#fff';ctx.fillRect(0,0,W,H);await page.render({canvasContext:ctx,canvas,viewport:page.getViewport({scale:W/page.getViewport({scale:1}).width}),transform:[1,0,0,1,0,-top],background:'rgb(255,255,255)',intent:maskMode?'print':'display'}).promise;const gray=grayscaleRows(ctx.getImageData(0,0,W,rows),rows);canvas.width=canvas.height=1;return gray;}
 function groupPending(items){const n=mergeCount(),groups=[];for(let i=0;i<items.length;i+=n)groups.push(items.slice(i,i+n));return groups;}
 function extractFileNumber(file){const stem=file.name.replace(/\.pdf$/i,'');const match=stem.match(/(\d+)(?!.*\d)/);return match?Number(match[1]):null;}
-function outputTitle(group,groupIndex){const files=group.map(item=>item.file),custom=$('title').value.trim();if(custom){const first=extractFileNumber(files[0]),last=extractFileNumber(files[files.length-1]);const fallbackStart=groupIndex*mergeCount()+1,start=first??fallbackStart,end=last??(start+files.length-1);return safeName(files.length===1?`${custom}${start}`:`${custom}${start}-${end}`);}if(files.length===1)return safeName(files[0].name.replace(/\.pdf$/i,''));const first=safeName(files[0].name.replace(/\.pdf$/i,''));return safeName(`${first}_等${files.length}个PDF`);}
+function outputTitle(group,groupIndex){
+  const files=group.map(item=>item.file);
+  const custom=$('title').value.trim();
+  if(custom){
+    const first=extractFileNumber(files[0]),last=extractFileNumber(files[files.length-1]);
+    const fallbackStart=groupIndex*mergeCount()+1,start=first??fallbackStart,end=last??(start+files.length-1);
+    return safeName(files.length===1?`${custom}${start}`:`${custom}${start}-${end}`);
+  }
+  const stems=files.map(file=>file.name.replace(/\.pdf$/i,''));
+  if(files.length===1)return safeName(stems[0]);
+  // If files are a numbered series with the same title, collapse the suffixes into a range.
+  // Example: "玫瑰与香槟 台版01.pdf" + "玫瑰与香槟 台版02.pdf"
+  // becomes "玫瑰与香槟 台版01-02.xtc" instead of adding "_等2个PDF".
+  const numbered=stems.map(stem=>stem.match(/^(.*?)(\d+)$/));
+  if(numbered.every(Boolean)&&numbered.every(match=>match[1]===numbered[0][1])){
+    const prefix=numbered[0][1],firstNumber=numbered[0][2],lastNumber=numbered[numbered.length-1][2];
+    return safeName(`${prefix}${firstNumber}-${lastNumber}`);
+  }
+  // Fallback for files without a shared numbered title.
+  return safeName(`${stems[0]}_等${files.length}个PDF`);
+}
 
 function schedulePreview(){if(processing)return;clearTimeout(previewTimer);const token=++previewToken;previewTimer=setTimeout(()=>updatePreview(token),180);}
 function destroyPreviewCache(){const old=previewCache;previewCache=null;if(old?.pdf){try{old.pdf.destroy();}catch(_){}}}
