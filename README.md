@@ -6,7 +6,7 @@
 
 与需要先加载或处理整本 PDF 才能查看转换效果的工作流程不同，本项目只渲染第一份 PDF 的第一页，再裁切顶部区域进行预览。调整图像处理参数时，还可以复用缓存的灰度图，减少重复渲染。
 
-**在线使用：** https://zukuxi.github.io/x3-xtc-batch/
+**在线使用：** https://zukuxi.github.io/x3-manhwa-pdf-to-xtc/
 
 ## 主要功能
 
@@ -194,7 +194,7 @@ Both dependencies are loaded from cdnjs.
 
 ## Web App
 
-https://zukuxi.github.io/x3-xtc-batch/
+https://zukuxi.github.io/x3-manhwa-pdf-to-xtc/
 
 ## Credits and License
 
