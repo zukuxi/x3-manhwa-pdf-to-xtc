@@ -549,7 +549,8 @@ async function renderPdfRows(pdf,page,top,rows,maskMode){
 // 章节识别：支持 [第1话] 标题、【第1话】标题、 第1章 标题等常见格式。
 function parseChapterFile(file){
     const stem=file.name.replace(/\.pdf$/i,'');
-    const match=stem.match(/^\s*[\[【(（]?\s*(?:第\s*)?(\d+)\s*(?:话|話|章|回)\s*[\]】)）]?\s*[-_.、：:：]?\s*(.*?)\s*$/i);
+    // 允许章节号前面带有 [第2季]、【第二季】等前缀
+    const match=stem.match(/(?:^|[\s\[【(（])(?:第\s*)?(\d+)\s*(?:话|話|章|回)\s*[\]】)）]?\s*[-_.、：:：]?\s*(.*?)\s*$/i);
     if(!match)return null;
     const title=match[2].replace(/^[\s\-_.、:：]+/,'').trim();
     return {
