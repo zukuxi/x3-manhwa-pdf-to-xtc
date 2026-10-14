@@ -336,6 +336,7 @@ function syncButtons(){
     folderInput.disabled=processing;
     $('mergeMode').disabled=processing;
     $('mergeCount').disabled=processing||mergeMode()==='chapter';
+    $('mergeCountField').style.display=mergeMode()==='chapter'?'none':'';
 }
 
 function stateLabel(state){
