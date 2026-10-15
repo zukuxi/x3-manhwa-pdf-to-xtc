@@ -25,6 +25,19 @@ function applyContrast(gray,level){
   if(range>0)for(let i=0;i<gray.length;i++)gray[i]=clamp255((gray[i]-black)*255/range);
   return gray;
 }
+function applyGamma(gray,gamma=1){
+gamma=Number(gamma);
+if(!Number.isFinite(gamma)||gamma<=0||Math.abs(gamma-1)<0.0001)return gray;
+const lut=new Uint8Array(256);
+for(let i=0;i<256;i++){
+lut[i]=Math.round(255*Math.pow(i/255,gamma));
+}
+for(let i=0;i<gray.length;i++){
+const value=Math.max(0,Math.min(255,Math.round(gray[i])));
+gray[i]=lut[value];
+}
+return gray;
+}
 function dither(gray,w,h,mode,depth,threshold,contrast=0,brightness=0,strength=100){
   const a=new Float32Array(gray);
   for(let i=0;i<a.length;i++)a[i]=clamp255(a[i]+brightness*1.5);
