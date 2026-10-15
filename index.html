@@ -21,6 +21,14 @@
     <div class="field"><label for="ditherStrength" data-i18n="ditherStrengthLabel">抖动强度</label><input id="ditherStrength" type="range" min="0" max="100" step="5" value="100"><span id="ditherStrengthValue" class="slider-value">100%</span></div>
   </div>
   <div class="row" style="margin-top:12px">
+    <div class="field">
+      <label for="gamma" data-i18n="gammaLabel">Gamma（伽马）</label>
+      <input id="gamma" type="range" min="0.50" max="2.00" step="0.05" value="1.00">
+      <span id="gammaValue" class="slider-value">1.00</span>
+      <small class="hint">1.00 为原始效果；小于 1 提亮，大于 1 压暗。</small>
+    </div>
+  </div>
+  <div class="row" style="margin-top:12px">
     <div class="field"><label for="mergeMode" data-i18n="mergeModeLabel">合并模式</label><select id="mergeMode"><option value="count" data-i18n="mergeModeCount">数量模式（每 N 个 PDF 合并）</option><option value="chapter" data-i18n="mergeModeChapter">章节模式（按连续章节和标题合并）</option></select></div>
     <div class="field" id="mergeCountField"><label for="mergeCount" data-i18n="mergeLabel">每几个 PDF 合并成一本</label><select id="mergeCount"><option value="1" data-i18n="merge1">1 个（每份 PDF 单独输出）</option><option value="2" selected data-i18n="merge2">每 2 个 PDF 合并</option><option value="3" data-i18n="merge3">每 3 个 PDF 合并</option><option value="4" data-i18n="merge4">每 4 个 PDF 合并</option><option value="5" data-i18n="merge5">每 5 个 PDF 合并</option><option value="10" data-i18n="merge10">每 10 个 PDF 合并</option><option value="20" data-i18n="merge20">每 20 个 PDF 合并</option></select></div>
     <div class="field"><label for="title" data-i18n="titleLabel">书名（可选）</label><input id="title" type="text" placeholder="默认使用文件名自动命名" data-i18n-placeholder="titlePlaceholder"></div>
