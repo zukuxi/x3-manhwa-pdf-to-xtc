@@ -38,10 +38,11 @@ gray[i]=lut[value];
 }
 return gray;
 }
-function dither(gray,w,h,mode,depth,threshold,contrast=0,brightness=0,strength=100){
+function dither(gray,w,h,mode,depth,threshold,contrast=0,brightness=0,strength=100,gamma=1){
   const a=new Float32Array(gray);
   for(let i=0;i<a.length;i++)a[i]=clamp255(a[i]+brightness*1.5);
-  applyContrast(a,contrast);
+applyGamma(a,gamma);
+applyContrast(a,contrast);
   strength=Math.max(0,Math.min(100,strength))/100;
   const q=(v)=>depth===2?(v<42?0:v<127?85:v<212?170:255):(v<(mode==='none'?threshold:128)?0:255);
   if(mode==='none'||strength===0)return Uint8Array.from(a,v=>q(v));
