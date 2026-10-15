@@ -122,11 +122,11 @@ fileInput.addEventListener('change',()=>{addFiles(fileInput.files);fileInput.val
 clear.addEventListener('click',()=>{if(processing)return;previewToken++;queueItems.length=0;outputItems.length=0;destroyPreviewCache();clearPreview();previewPageIndex=0;bar.style.width='0%';setStatus('队列已清空。',0);renderQueue();updatePreviewControls();});
 cancel.addEventListener('click',()=>{cancelled=true;cancel.disabled=true;setStatus(currentStatusRaw+'\n正在取消；当前渲染段结束后会停止。');});
 $('mergeCount').addEventListener('change',()=>setStatus(`已设置每 ${mergeCount()} 个 PDF 合并为一个 XTC/XTCH。预览不受合并数量影响。`,0));
-for(const id of ['depth','dither','threshold','contrast','brightness','ditherStrength','maskMode'])$(id).addEventListener('input',()=>{updateSliderLabels();schedulePreview();});
+for(const id of ['depth','dither','threshold','contrast','brightness','ditherStrength','gamma','maskMode'])$(id).addEventListener('input',()=>{updateSliderLabels();schedulePreview();});
 $('threshold').addEventListener('change',updateSliderLabels);
 $('previewPrev').addEventListener('click',()=>{previewPageIndex=Math.max(0,previewPageIndex-1);schedulePreview();});
 $('previewNext').addEventListener('click',()=>{previewPageIndex=Math.min(previewMaxPage()-1,previewPageIndex+1);schedulePreview();});
-function updateSliderLabels(){$('brightnessValue').textContent=$('brightness').value;$('ditherStrengthValue').textContent=$('ditherStrength').value+'%';$('thresholdValue').textContent=$('threshold').value;}
+function updateSliderLabels(){$('brightnessValue').textContent=$('brightness').value;$('ditherStrengthValue').textContent=$('ditherStrength').value+'%';$('thresholdValue').textContent=$('threshold').value;$('gammaValue').textContent=Number($('gamma').value).toFixed(2);}
 function previewMaxPage(){return Math.min(5,previewCache?.pdf?.numPages||0);}
 function updatePreviewControls(){const total=previewMaxPage();$('previewPageLabel').textContent=language==='en'?`Page ${total?Math.min(previewPageIndex+1,total):0} / ${total}`:`第 ${total?Math.min(previewPageIndex+1,total):0} / ${total} 页`;$('previewPrev').disabled=previewPageIndex<=0||total===0;$('previewNext').disabled=total===0||previewPageIndex>=total-1;}
 function makeBlankBuffer(){const b=new Uint8Array(W*H);b.fill(255);return b;}
