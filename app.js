@@ -17,7 +17,7 @@ function applyContrast(gray,level){
   if(!level)return gray;
   const hist=new Uint32Array(256);
   for(let i=0;i<gray.length;i++)hist[Math.max(0,Math.min(255,Math.round(gray[i])))]++;
-  const total=gray.length,blackTarget=total*(3*level)/100,whiteTarget=total*(3+9*level)/100;
+  const total=gray.length,blackTarget=total*(0.15*level)/100,whiteTarget=total*(0.15*level)/100;
   let black=0,white=255,count=0;
   for(let i=0;i<256;i++){count+=hist[i];if(count>=blackTarget){black=i;break;}}
   count=0;for(let i=255;i>=0;i--){count+=hist[i];if(count>=whiteTarget){white=i;break;}}
