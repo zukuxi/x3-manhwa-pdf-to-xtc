@@ -1,6 +1,5 @@
 
-# X3 漫画 PDF 批量转 XTC / XTCH (只转条漫）
-
+# X3 漫画 PDF 批量转 XTC / XTCH (只转条漫）(可转别的黑色转不出来的蒙版pdf）
 **中文 | [English](#english)**
 
 将 manhwa 和 webtoon PDF 批量转换为适用于 Xteink X3 电子阅读器的 XTC / XTCH 文件。
